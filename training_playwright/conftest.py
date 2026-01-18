@@ -3,7 +3,7 @@ from playwright.sync_api import sync_playwright
 
 @pytest.fixture
 def setup_playwright():
-    print("starting playwright")
+    print("******starting playwright******")
 
     with sync_playwright() as playwright:
         browser = playwright.chromium.launch(headless=False)
