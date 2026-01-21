@@ -1,13 +1,10 @@
 
-from training_playwright.lululemon_project.pages.lulu_home_page import HomePage
-
 def test_search_item(home):
     home.fill_search("jacket")
     home.press_search_enter()
     home.check_search_result_visible()
 
     print("*** test search results for jacket ***")
-
 
 def test_search_invalid_product(home):
     home.fill_search("bitch")
@@ -23,11 +20,16 @@ def test_empty_bag_message(home):
 
     print("*** test empty bag passed ***")
 
+def test_sale_math_validation(sale_page):
+    sale_page.verify_on_sale_page()
+    discount = sale_page.validate_discount_math()
 
-def test_feedback_button(home):
-    page = setup_playwright
-    page.goto("https://shop.lululemon.com/story/women")
-    page.keyboard.press("Escape")
+    assert discount >= 10, f"Expected at least 10% discount, but found {discount}%"
+
+    print(f"*** The discount is {discount}% ***")
+
+# def test_feedback_button(home):
+
 
 
 

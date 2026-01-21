@@ -24,3 +24,11 @@ def home(setup_playwright):
 # page = setup_playwright
 # page.goto("https://shop.lululemon.com/story/women")
 # home = HomePage(page) עטפתי את שלושת השורות האלו כאן כדי לנקות בטסטים
+
+@pytest.fixture
+def sale_page(home):
+    page = home.page
+    page.get_by_role("link", name="We Made Too Much", exact=True).first.click()
+    page.wait_for_load_state("domcontentloaded")
+    from training_playwright.lululemon_project.pages.sale_page import SalePage
+    return SalePage(page)
