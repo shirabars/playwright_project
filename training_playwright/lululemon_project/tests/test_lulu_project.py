@@ -20,17 +20,28 @@ def test_empty_bag_message(home):
 
     print("*** test empty bag passed ***")
 
-def test_sale_math_validation(sale_page):
+def test_discount(sale_page):
     sale_page.verify_on_sale_page()
     discount = sale_page.validate_discount_math()
 
     assert discount >= 10, f"Expected at least 10% discount, but found {discount}%"
 
-    print(f"*** The discount is {discount}% ***")
+    print(f"*** The discount for the first item is {discount}% ***")
 
-# def test_feedback_button(home):
+def test_validate_under_50_sale(sale_page):
+    sale_page.verify_on_sale_page()
+    sale_page.apply_under_50_filter()
+    all_under_50_prices = sale_page.verify_all_prices_under_50()
+    sorted_prices = sorted(all_under_50_prices)
+    num_items = len(sorted_prices)
 
+    print(f" Counted {len(sorted_prices)}under 50$ items.")
+    if num_items > 0:
+        print(f"Price Range: ${sorted_prices[0]} - ${sorted_prices[-1]}")
 
+    assert num_items > 0, "No items were found in the Under $50 category"
+
+    print(f"✅ Tested 'Under $50' sale category. All {num_items} items are verified!")
 
 
 
