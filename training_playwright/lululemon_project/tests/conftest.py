@@ -23,7 +23,7 @@ def home(setup_playwright):
     homeP.close_popup()
     return homeP
 
-# נאלצתי לשנות כמה פעמים כי היו שינויים בהצגת מבצעי האתר וחיפשתי משהו יציב יותר
+# נאלצתי לשנות כמה פעמים כי היה בהצגת מבצעי האתר וחיפשתי משהו יציב יותר
 @pytest.fixture
 def sale_page(home):
     page = home.page

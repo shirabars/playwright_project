@@ -41,7 +41,7 @@ def test_validate_under_50_sale(sale_page):
 
     assert num_items > 0, "No items were found in the Under $50 category"
 
-    print(f"✅ Tested 'Under $50' sale category. All {num_items} items are verified!")
+    print(f"*** Tested 'Under $50' sale category. All {num_items} items are verified!")
 
 
 
