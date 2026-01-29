@@ -23,17 +23,13 @@ def home(setup_playwright):
     homeP.close_popup()
     return homeP
 
-
+# נאלצתי לשנות כמה פעמים כי היו שינויים בהצגת מבצעי האתר וחיפשתי משהו יציב יותר
 @pytest.fixture
 def sale_page(home):
     page = home.page
-    sale_pattern = re.compile(r"Sale|Too Much", re.IGNORECASE)
-    sale_link = page.locator("[data-testid='nav-desktop-l1']", has_text=sale_pattern)
-    href = sale_link.get_attribute("href")
-    full_url = f"https://shop.lululemon.com{href}"
-    page.goto(full_url, wait_until="domcontentloaded")
-    home.close_popup()
-    page.wait_for_selector("h1", timeout=15000)
+    women_nav = page.locator("a[data-testid='nav-desktop-l1']", has_text="Women")
+    women_nav.hover()
+    sale_link = page.locator("a[data-testid='features-list-item-9']", has_text="We Made Too Much")
+    sale_link.click()
     from training_playwright.lululemon_project.pages.sale_page import SalePage
     return SalePage(page)
-

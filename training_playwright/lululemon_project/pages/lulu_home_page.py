@@ -11,6 +11,8 @@ class HomePage:
         self.no_results_title = page.locator("[class*='no-search-results_noTitleText']")
         self.bag_icon = page.locator("[data-testid='cart-icon']")
         self.empty_bag_title = page.locator("h1:has-text('Give your bag some love!')")
+        self.women_nav = self.page.locator("a[data-testid='nav-desktop-l1']", has_text="Women")
+        self.we_made_too_much_link = self.page.locator("a[data-testid='features-list-item-9']")
 
     def close_popup(self):
         self.page.keyboard.press("Escape")
